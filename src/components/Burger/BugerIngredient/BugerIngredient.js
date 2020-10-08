@@ -15,14 +15,23 @@ const burgerIngredient = (props) => {
                     <div className={classes.Seeds2}></div>
                 </div>
             );
-            break;    
+            break;
         case ('meat'):
             ingredient = <div className={classes.Meat}></div>;
-            break;   
-    
-        default:
             break;
+        case ('cheese'):
+            ingredient = <div className={classes.Cheese}></div>;
+            break;
+        case ('becon'):
+            ingredient = <div className={classes.Becon}></div>;
+            break;
+        case ('salad'):
+            ingredient = <div className={classes.Salad}></div>;
+            break;
+        default:
+            ingredient = null;
     }
+    return ingredient;
 };
 
 export default burgerIngredient;
