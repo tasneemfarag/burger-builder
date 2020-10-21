@@ -3,7 +3,7 @@ import Aux from '../../hoc/Aux/Aux';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
-import OrderSummery from '../../components/Burger/OrderSummery/OrderSummery';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
@@ -136,7 +136,7 @@ class BurgerBuilder extends Component {
         for (let key in disabledInfo) {
             disabledInfo[key] = disabledInfo[key] <= 0
         }
-        let orderSummery = null;
+        let orderSummary = null;
         
         let burger = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
         if(this.state.ingredients) {
@@ -151,21 +151,21 @@ class BurgerBuilder extends Component {
                         price={this.state.totalPrice} />
                 </Aux>
             );
-            orderSummery = <OrderSummery
+            orderSummary = <OrderSummary
             ingredients={this.state.ingredients}
             price={this.state.totalPrice.toFixed(2)}
             purchaseCancelled={this.purchaseCancelHandler}
             purchaseContinued={this.purchaseContinueHandler} />;
         }
         if (this.state.loading) {
-            orderSummery = <Spinner />;
+            orderSummary = <Spinner />;
         }
 
         //{salad: true, meat: false,...}
         return (
             <Aux>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-                    {orderSummery}
+                    {orderSummary}
                 </Modal>
                 {burger}
             </Aux>
